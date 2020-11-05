@@ -1,0 +1,95 @@
+<section class="todoapp">
+  <header class="header">
+    <h1>{{label}}</h1>
+      <form (submit) = "appendItem(newTodoInput.value); newTodoInput.value=''">
+      <input  #newTodoInput
+              name        = "newTodoInput"
+              class       = "new-todo"
+              placeholder = "Que faire?"
+              autofocus />
+    </form>
+  </header>
+  <section class="main">
+    <input  class="toggle-all"
+            type="checkbox"
+            name="toggleAll"
+    />
+    <ul class="todo-list">
+    </ul>
+  </section>
+  <footer class="footer">
+    <span class="todo-count"><strong></strong> restantes</span>
+    <ul class="filters">
+      <li>
+        <a class="filterAll">Tous</a>
+      </li>
+      <li>
+        <a class="filterActives">Actifs</a>
+      </li>
+      <li>
+        <a class="filterCompleted">Complétés</a>
+      </li>
+    </ul>
+    <button class="clear-completed">Supprimer cochées</button>
+  </footer>
+</section>
+<hr/>
+
+<!-- test: show list of items -->
+<h3>first version</h3>
+<ul>
+  <li *ngFor="let item of items">
+    {{item|json}}
+  </li>
+</ul>
+
+<!-- test 2: show list with a checkbox that works -->
+<h3>second version</h3>
+<ul>
+  <li *ngFor="let item of items">
+    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
+    <label for="">{{item.label}}</label>
+    <pre>{{item|json}}</pre>
+  </li>
+</ul>
+
+<!-- test 3: list with checkbox that does not work-->
+<h3>third version</h3>
+<ul>
+  <li *ngFor="let item of items">
+    <input type="checkbox" [ngModel]="item.isDone">
+    <label for="">{{item.label}}</label>
+    <pre>{{item|json}}</pre>
+  </li>
+</ul>
+
+<!-- test 4: edit label -->
+<h3>4rth version</h3>
+<ul>
+  <li *ngFor="let item of items">
+    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
+    <label for="">{{item.label}}</label>
+    <pre>{{item|json}}</pre>
+
+    <form (submit)="itemChange(item, newLab.value)">
+      <input type="text" [ngModel]="item.label" name="label" #newLab>
+    </form>
+
+  </li>
+</ul>
+
+<!-- test 5: delete item -->
+<h3>5fth version</h3>
+<ul>
+  <li *ngFor="let item of items">
+    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
+    <input type="button" (click)="deleteItem(item)" value="Delete"/>
+
+    <label for="">{{item.label}}</label>
+    <pre>{{item|json}}</pre>
+
+    <form (submit)="itemChange(item, newLab.value)">
+      <input type="text" [ngModel]="item.label" name="label" #newLab>
+    </form>
+  </li>
+</ul>
