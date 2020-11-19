@@ -15,7 +15,8 @@
             name="toggleAll"
     />
     <ul class="todo-list">
-      <app-todo-item [data]=items></app-todo-item>
+      <app-todo-item [data]=items>
+      </app-todo-item>
     </ul>
   </section>
   <footer class="footer">
@@ -31,7 +32,7 @@
         <a class="filterCompleted">Complétés</a>
       </li>
     </ul>
-    <button class="clear-completed">Supprimer cochées</button>
+    <button class="clear-completed" (click)="deleteItems()">Supprimer cochées</button>
   </footer>
 </section>
 <hr/>

@@ -7,7 +7,7 @@
             (ngModelChange)="itemDone(item, $event)"
             
     />
-    <label 	class="texte" (dblclick)="edit(item)">{{ item.label }}</label>
+    <label 	class="texte" click="cancelEditing(item)" (dblclick)="edit(item, i)">{{ item.label }}</label>
     
     <button class="destroy" (click)="itemDelete(item)"></button>
   </div>

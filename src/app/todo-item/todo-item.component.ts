@@ -11,6 +11,8 @@ import { TodoListData } from '../dataTypes/TodoListData';
 })
 export class TodoItemComponent implements OnInit {
   @Input() private data: TodoItemData;
+  private keepTrack:TodoItemData;
+
   constructor( private todoService: TodoService ) { }
 
   ngOnInit() {
@@ -31,19 +33,21 @@ export class TodoItemComponent implements OnInit {
 
   itemChange(item: TodoItemData, label:string){
     let editing = false;
-    this.todoService.setEditingDone(label, editing, item);
-    
+    this.todoService.setEditingDone(label, editing, item); 
   }
 
   edit(item:TodoItemData) {
-    item.editing = true;
+    if(this.keepTrack != null)
+      this.keepTrack.editing = false;
 
+    item.editing = true;
+    this.keepTrack = item;
   }
-  
-  cancelEditingTodo(item: TodoItemData) {
+
+  cancelEditing(item: TodoItemData) {
     item.editing = false;
   }
-  
+
 }
 
 
