@@ -18,17 +18,26 @@ export class TodoService {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label, isDone: I.isDone}) )
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone: I.isDone, editing:I.editing }) )
     });
   }
 
-  setItemsDone(isDone: boolean, ...items: TodoItemData[] ) {
+  setItemsDone(isDone: boolean, ...items: TodoItemData[]) {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone}) )
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label: I.label, isDone, editing:I.editing }) )
     });
   }
+
+  setEditingDone(label: string, editing: boolean, ...items: TodoItemData[]) {
+    const tdl = this.todoListSubject.getValue();
+    this.todoListSubject.next( {
+      label: tdl.label,
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone:I.isDone, editing}) )
+    });
+  }
+
 
   appendItems( ...items: TodoItemData[] ) {
     const tdl = this.todoListSubject.getValue();

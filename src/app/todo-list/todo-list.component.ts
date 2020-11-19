@@ -11,9 +11,9 @@ import {TodoService} from '../todo.service';
 export class TodoListComponent implements OnInit {
 
     private todoList: TodoListData; 
-    
+
     constructor(private todoService: TodoService) {
-        todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
+         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
     }
 
     ngOnInit() {
@@ -30,7 +30,8 @@ export class TodoListComponent implements OnInit {
     appendItem(label: string){
         this.todoService.appendItems({
             label,
-            isDone:false
+            isDone:false,
+            editing:false
         });
     }
 
@@ -41,11 +42,9 @@ export class TodoListComponent implements OnInit {
     itemChange(item: TodoItemData, label:string){
         this.todoService.setItemsLabel(label, item);
     }
-
-    // deleteItem(index){
-    //     this.todoList.items.splice(index,1);
-    // }
+    
     deleteItem(item: TodoItemData){
         this.todoService.removeItems(item);
     }
+
 }

@@ -15,6 +15,7 @@
             name="toggleAll"
     />
     <ul class="todo-list">
+      <app-todo-item [data]=items></app-todo-item>
     </ul>
   </section>
   <footer class="footer">
@@ -34,51 +35,7 @@
   </footer>
 </section>
 <hr/>
-
-<!-- test: show list of items -->
-<h3>first version</h3>
-<ul>
-  <li *ngFor="let item of items">
-    {{item|json}}
-  </li>
-</ul>
-
-<!-- test 2: show list with a checkbox that works -->
-<h3>second version</h3>
-<ul>
-  <li *ngFor="let item of items">
-    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
-    <label for="">{{item.label}}</label>
-    <pre>{{item|json}}</pre>
-  </li>
-</ul>
-
-<!-- test 3: list with checkbox that does not work-->
-<h3>third version</h3>
-<ul>
-  <li *ngFor="let item of items">
-    <input type="checkbox" [ngModel]="item.isDone">
-    <label for="">{{item.label}}</label>
-    <pre>{{item|json}}</pre>
-  </li>
-</ul>
-
-<!-- test 4: edit label -->
-<h3>4rth version</h3>
-<ul>
-  <li *ngFor="let item of items">
-    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
-    <label for="">{{item.label}}</label>
-    <pre>{{item|json}}</pre>
-
-    <form (submit)="itemChange(item, newLab.value)">
-      <input type="text" [ngModel]="item.label" name="label" #newLab>
-    </form>
-
-  </li>
-</ul>
-
-<!-- test 5: delete item -->
+<!-- Debug test 5: delete item -->
 <h3>5fth version</h3>
 <ul>
   <li *ngFor="let item of items">

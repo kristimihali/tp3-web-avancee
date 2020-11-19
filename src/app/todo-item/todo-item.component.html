@@ -1,13 +1,29 @@
-<div class="view">
-  <input 	class			= "toggle"
-          type			= "checkbox"
-          name			= "fait"
-  />
-  <label 	class="texte"></label>
-  <button class="destroy"></button>
-</div>
-<form>
-  <input  #newTextInput
-          name    = "newTextInput"
-          class   = "edit"/>
-</form>
+<li *ngFor="let item of data; let i=index;" [ngClass]="item.editing ? 'editing' : (item.isDone ? 'completed': '')">
+  <div class="view">
+    <input 	class			= "toggle"
+            type			= "checkbox"
+            name			= "fait"
+            [ngModel]="item.isDone" 
+            (ngModelChange)="itemDone(item, $event)"
+            
+    />
+    <label 	class="texte" (dblclick)="edit(item)">{{ item.label }}</label>
+    
+    <button class="destroy" (click)="itemDelete(item)"></button>
+  </div>
+  
+  <!-- <form (submit)="itemChange(item, newTextInput.value)" >
+    <input type="text" 
+      #newTextInput
+      class = "edit" 
+      [ngModel]="item.label"
+  >
+  </form> -->
+  <input type="text" 
+      [ngModel]="item.label"
+      name="label" 
+      #newLab 
+      class = "edit" 
+      (keyup.enter)="itemChange(item, newLab.value)"
+  >
+</li>
