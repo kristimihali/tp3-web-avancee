@@ -14,12 +14,13 @@ export class TodoService {
     return this.todoListSubject.asObservable();
   }
 
+
   setItemsLabel(label: string, ...items: TodoItemData[] ) {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone: I.isDone, editing:I.editing }) )
-    });
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone: I.isDone, editing:I.editing }) ),
+   });
   }
 
   setItemsDone(isDone: boolean, ...items: TodoItemData[]) {
@@ -37,7 +38,6 @@ export class TodoService {
       items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone:I.isDone, editing}) )
     });
   }
-
 
   appendItems( ...items: TodoItemData[] ) {
     const tdl = this.todoListSubject.getValue();
