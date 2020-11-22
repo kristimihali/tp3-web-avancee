@@ -103,8 +103,8 @@ export class TodoListComponent implements OnInit {
         this.todoList.editable = true;
     }
 
-    itemChangeLabel(label:string, item: TodoItemData){
-        this.todoService.setLabel(label, item);
+    itemChangeLabel(label:string){
+        this.todoService.setLabel(label);
     }
 
     get editable(){

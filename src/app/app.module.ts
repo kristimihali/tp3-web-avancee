@@ -10,7 +10,8 @@ import {FormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
-import { SigninComponent } from './authentication/signin/signin.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // const routes: Routes = [
 // 	{path: '', component: TodoListComponent, pathMatch: 'full'},
@@ -24,14 +25,13 @@ import { SigninComponent } from './authentication/signin/signin.component';
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    SigninComponent,
   ],
   imports: [
     // RouterModule.forRoot(routes, {useHash: true}),
     AppRoutingModule,
     BrowserModule, 
     FormsModule, 
-    StorageServiceModule,
+    StorageServiceModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class TodoItemComponent implements OnInit {
 
-  @Input() private data: TodoItemData;
+  @Input() public data: TodoItemData;
 
   //check if there is a field that is already being edited
   private keepTrack:TodoItemData;
