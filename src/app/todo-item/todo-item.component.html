@@ -1,9 +1,9 @@
 <li *ngFor="let item of data; let i=index;" 
     [ngClass]="{
-              'editing': item.editing, 
-              'completed': item.isDone, 
-              'hidden': location == '/active' && !item.isDone || location == '/completed' && item.isDone
-            }"
+                'editing': item.editing, 
+                'completed': item.isDone, 
+                'hidden': location == '/active' && !item.isDone || location == '/completed' && item.isDone
+              }"
     >
   <div class="view">
     <input 	class			= "toggle"
@@ -13,7 +13,7 @@
             (ngModelChange)="itemDone(item, $event)"
             
     />
-    <label 	class="texte" (dblclick)="edit(item, i)" (click)="cancelEditing()">{{ item.label }} </label>
+    <label 	class="texte" (dblclick)="edit(item, i)">{{ item.label }} </label>
     <button class="destroy" (click)="itemDelete(item)"></button>
   </div>
   <input type="text" 

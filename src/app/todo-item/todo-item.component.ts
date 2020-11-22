@@ -18,7 +18,7 @@ export class TodoItemComponent implements OnInit {
   private keepTrack:TodoItemData;
   location: any;
 
-  constructor( private todoService: TodoService, private _router: Router ) {         
+  constructor( private todoService: TodoService, _router: Router ) {         
     _router.events.subscribe((data:any) => { this.location = data.url; });
  }
 
@@ -26,10 +26,12 @@ export class TodoItemComponent implements OnInit {
   }
 
   get label() : string {
-    return this.data.label;
+    return localStorage.getItem('label');
+    // return this.data.label;
   }
 
   get isDone() : boolean {
+    // return JSON.parse(localStorage.getItem('items')).;
     return this.data.isDone;
   }
 
@@ -56,11 +58,6 @@ export class TodoItemComponent implements OnInit {
     item.editing = true;
     this.keepTrack = item;
   }
-
-  cancelEditing() {
-    this.keepTrack.editing = false;
-  }
-
   /////////////////////////////////////////////////////
 
 

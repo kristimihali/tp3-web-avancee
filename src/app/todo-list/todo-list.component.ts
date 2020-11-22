@@ -23,9 +23,8 @@ export class TodoListComponent implements OnInit {
     location: any;
     isSingleClick: Boolean = true;     
 
-    constructor(private todoService: TodoService, private _router: Router) {
+    constructor(private todoService: TodoService) {
          todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
-         _router.events.subscribe((data:any) => { this.location = data.url; });
     }
 
     ngOnInit() {
@@ -92,13 +91,6 @@ export class TodoListComponent implements OnInit {
     ///////////////////////////////////////////////
     cancelEditing() {
         this.todoList.editable = false;
-        
-        this.isSingleClick = true;
-        setTimeout(()=>{
-            if(this.isSingleClick){
-                this.todoList.editable = false;
-            }
-         },250);
     }
 
     editLabel() {
@@ -107,9 +99,7 @@ export class TodoListComponent implements OnInit {
                 item.editing = !item.editing;
             }
         });
-
         this.todoList.editable = true;
-
     }
 
     itemChangeLabel(label:string, item: TodoItemData){

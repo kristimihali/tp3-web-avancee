@@ -9,4 +9,8 @@ import {TodoItemData} from './dataTypes/TodoItemData';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {}
+export class AppComponent {
+  // cancelEditing() {
+    // localStorage.getItem('items').editable = false;
+  // }
+}
