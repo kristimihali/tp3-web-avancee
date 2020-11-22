@@ -4,7 +4,6 @@
               'completed': item.isDone, 
               'hidden': location == '/active' && !item.isDone || location == '/completed' && item.isDone
             }"
-
     >
   <div class="view">
     <input 	class			= "toggle"
@@ -14,18 +13,9 @@
             (ngModelChange)="itemDone(item, $event)"
             
     />
-    <label 	class="texte" click="cancelEditing(item)" (dblclick)="edit(item, i)">{{ item.label }}</label>
-    
+    <label 	class="texte" (dblclick)="edit(item, i)" (click)="cancelEditing()">{{ item.label }} </label>
     <button class="destroy" (click)="itemDelete(item)"></button>
   </div>
-  
-  <!-- <form (submit)="itemChange(item, newTextInput.value)" >
-    <input type="text" 
-      #newTextInput
-      class = "edit" 
-      [ngModel]="item.label"
-  >
-  </form> -->
   <input type="text" 
       [ngModel]="item.label"
       name="label" 

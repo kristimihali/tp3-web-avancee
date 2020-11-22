@@ -1,7 +1,17 @@
 <section class="todoapp">
   <header class="header">
-    <h1>{{label}}</h1>
-      <form (submit) = "appendItem(newTodoInput.value); newTodoInput.value=''">
+    <h1><label 	class="texte" (dblclick)="editLabel()" (click)="cancelEditing()">{{ label }} </label></h1>
+
+    <input type="text" 
+      [ngModel]="label"
+      name="label" 
+      class='edit'
+      #newLabel
+      (keyup.enter)="itemChangeLabel(newLabel.value)"
+      [ngClass] = "{ 'hidden': !editable }"
+    >
+
+    <form (submit) = "appendItem(newTodoInput.value); newTodoInput.value=''" (click)="cancelEditing()">
       <input  #newTodoInput
               name        = "newTodoInput"
               class       = "new-todo"
@@ -9,18 +19,17 @@
               autofocus />
     </form>
   </header>
-  <section class="main" *ngIf="items.length > 0">
+  <section class="main" *ngIf="items.length > 0" (click)="cancelEditing()">
     <section class="main" >
     <input  class="toggle-all"
             type="checkbox"
             name="toggleAll"
     />
     <ul class="todo-list">
-      <app-todo-item [data]=items>
+      <app-todo-item [data]=items >
       </app-todo-item>
     </ul>
   </section>
-
 
   <footer class="footer">
     <span class="todo-count"><strong>{{left}}</strong> restante{{left !== 1 ? 's' : ''}}</span>
@@ -35,7 +44,8 @@
         <a class="filterCompleted" [routerLink]="['', 'completed']">Complétés</a>
       </li>
     </ul>
-    <button *ngIf="completed > 0" class="clear-completed" (click)="deleteItems()">Supprimer cochées</button>
+    <button *ngIf="completed > 0" class="clear-completed" (click)="deleteItems()">&times; Cochée{{completed !== 1 ? 's' : ''}} </button>
+    <button *ngIf="items.length > 0" class="clear-completed" (click)="deleteAll()">&times; Tout</button>
   </footer>
 </section>
 <hr/>

@@ -19,8 +19,9 @@ export class TodoListComponent implements OnInit {
 
     private todoList: TodoListData; 
     
-    private tempTotalItems: TodoItemData[];
+    // private tempTotalItems: TodoItemData[];
     location: any;
+    isSingleClick: Boolean = true;     
 
     constructor(private todoService: TodoService, private _router: Router) {
          todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
@@ -59,9 +60,9 @@ export class TodoListComponent implements OnInit {
         this.todoService.removeItems(item);
     }
 
-    cancelEditing(item: TodoItemData) {
-        item.editing = false;
-    }
+    // cancelEditing(item: TodoItemData) {
+    //     item.editing = false;
+    // }
 
     deleteItems(){
         this.todoList.items.forEach(item => {
@@ -74,26 +75,49 @@ export class TodoListComponent implements OnInit {
 		return this.items.filter(t => t.isDone).length;
     }
 
-    get completedItems(): TodoItemData[]{
-        //this.tempTotalItems = this.todoList.items;
-        return this.todoList.items = this.todoList.items.filter(t => t.isDone);
-    }
-
     get left() {
         return this.items.length - this.items.filter(t => t.isDone).length;
     }
     
-    get leftItems(): TodoItemData[]{
-        return this.todoList.items = this.todoList.items.filter(t => t.isDone == false);
-    }
 
     get allItems(): TodoItemData[]{
         return this.todoList.items;
     }
 
-    public isVisited = false;
-    public checkVisited(add:boolean) {
-       // reverse the value of property
-       this.isVisited = add ? true:false;
+    deleteAll(){
+        this.todoList.items.forEach(item => {
+                this.deleteItem(item); 
+        });
     }
+    ///////////////////////////////////////////////
+    cancelEditing() {
+        this.todoList.editable = false;
+        
+        this.isSingleClick = true;
+        setTimeout(()=>{
+            if(this.isSingleClick){
+                this.todoList.editable = false;
+            }
+         },250);
+    }
+
+    editLabel() {
+        this.todoList.items.forEach(item => {
+            if(item.editing){
+                item.editing = !item.editing;
+            }
+        });
+
+        this.todoList.editable = true;
+
+    }
+
+    itemChangeLabel(label:string, item: TodoItemData){
+        this.todoService.setLabel(label, item);
+    }
+
+    get editable(){
+        return this.todoList.editable;
+    }
+
 }

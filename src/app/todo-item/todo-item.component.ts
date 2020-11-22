@@ -14,10 +14,11 @@ export class TodoItemComponent implements OnInit {
 
   @Input() private data: TodoItemData;
 
+  //check if there is a field that is already being edited
   private keepTrack:TodoItemData;
   location: any;
 
-  constructor( private todoService: TodoService,private _router: Router ) {         
+  constructor( private todoService: TodoService, private _router: Router ) {         
     _router.events.subscribe((data:any) => { this.location = data.url; });
  }
 
@@ -48,18 +49,19 @@ export class TodoItemComponent implements OnInit {
 
   edit(item:TodoItemData) {
     if(this.keepTrack != null)
+    //if there is an opened field that's being edited
+    //then close that one and open another one that is being double clicked
       this.keepTrack.editing = false;
 
     item.editing = true;
     this.keepTrack = item;
   }
 
-  // cancelEditing(item: TodoItemData) {
-  //   item.editing = false;
-  // }
+  cancelEditing() {
+    this.keepTrack.editing = false;
+  }
 
   /////////////////////////////////////////////////////
-
 
 
 }
