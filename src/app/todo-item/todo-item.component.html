@@ -2,10 +2,10 @@
     [ngClass]="{
                 'editing': item.editing, 
                 'completed': item.isDone, 
-                'hidden': location == '/active' && !item.isDone || location == '/completed' && item.isDone
+                'hidden': location == '/active' && item.isDone || location == '/completed' && !item.isDone
               }"
     >
-  <div class="view">
+  <div class="view"> 
     <input 	class			= "toggle"
             type			= "checkbox"
             name			= "fait"
@@ -23,4 +23,5 @@
       class = "edit" 
       (keyup.enter)="itemChange(item, newLab.value)"
   >
+  <!-- location = {{location}} locationActive = {{location == '/active'}}, locationCompleted = {{location == '/completed'}} -->
 </li>

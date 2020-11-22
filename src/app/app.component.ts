@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {TodoService} from './todo.service';
 import {TodoListData} from './dataTypes/TodoListData';
 import {TodoItemData} from './dataTypes/TodoItemData';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ import {TodoItemData} from './dataTypes/TodoItemData';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class AppComponent {
-  // cancelEditing() {
-    // localStorage.getItem('items').editable = false;
-  // }
+  constructor(){
+  }
 }

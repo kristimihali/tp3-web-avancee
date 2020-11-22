@@ -35,6 +35,7 @@ export class TodoListComponent implements OnInit {
     }
     
     get items(): TodoItemData[] {
+        // return JSON.parse(localStorage.getItem('items'));
         return this.todoList.items;
     }
 

@@ -10,20 +10,24 @@ import {FormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { SigninComponent } from './authentication/signin/signin.component';
 
-const routes: Routes = [
-	{path: '', component: TodoListComponent, pathMatch: 'full'},
-	{path: ':filter', component: TodoListComponent}
-];
+// const routes: Routes = [
+// 	{path: '', component: TodoListComponent, pathMatch: 'full'},
+//   // {path: ':filter', component: TodoListComponent}
+//   { path: 'signin', component: SigninComponent },
+//   // { path: 'active', component: TodoListComponent },
+// ];
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
+    SigninComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes, {useHash: true}),
+    // RouterModule.forRoot(routes, {useHash: true}),
     AppRoutingModule,
     BrowserModule, 
     FormsModule, 

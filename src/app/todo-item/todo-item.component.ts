@@ -18,11 +18,28 @@ export class TodoItemComponent implements OnInit {
   private keepTrack:TodoItemData;
   location: any;
 
-  constructor( private todoService: TodoService, _router: Router ) {         
-    _router.events.subscribe((data:any) => { this.location = data.url; });
+  constructor( private todoService: TodoService, private _router: Router ) {         
+    _router.events.subscribe((data:any) => { 
+      if (data.url) {
+        this.location = data.url;
+        // console.log(_router.url);
+        console.log(data.url);
+
+      }
+      // if (data.routerEvent) {
+      //   console.log('YII');
+      //   console.log(data.routerEvent);
+      //   this.location = data.routerEvent.url;
+      // }else{
+      //   console.log('NO');
+      //   console.log(data);
+      // }
+      // console.log(data.url);
+    });
  }
 
   ngOnInit() {
+    this._router.navigate([''])
   }
 
   get label() : string {

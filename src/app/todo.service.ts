@@ -9,9 +9,9 @@ export class TodoService {
   private todoListSubject = new BehaviorSubject<TodoListData>( 
     // {label: 'TodoList', items: [], editable:false} 
     {
-      label: localStorage.getItem('label') == null ? 'TodoList' : localStorage.getItem('label'),
+      label: localStorage.getItem('label') == null ? 'Todo' : localStorage.getItem('label'),
       items: localStorage.getItem('items') == null ? [] : JSON.parse(localStorage.getItem('items')), 
-      editable:false
+      editable: false
     } 
   );
 
