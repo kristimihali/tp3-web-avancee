@@ -8,9 +8,9 @@ import { SigninComponent } from './authentication/signin/signin.component';
 const routes: Routes = [
 
   { path: '', component: TodoListComponent },
-  // { path: 'active', component: TodoListComponent },
-  // { path: 'completed', component: TodoListComponent },
-  { path: 'signin', component:  SigninComponent},
+  { path: 'active', component: TodoListComponent },
+  { path: 'completed', component: TodoListComponent },
+  // { path: 'signin', component:  SigninComponent},
 
 ];
 

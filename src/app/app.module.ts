@@ -18,8 +18,7 @@ import { SigninComponent } from './authentication/signin/signin.component';
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    SigninComponent,
-
+    SigninComponent
   ],
   imports: [
     AppRoutingModule,

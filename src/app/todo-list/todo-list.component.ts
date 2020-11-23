@@ -24,7 +24,7 @@ export class TodoListComponent implements OnInit {
     isSingleClick: Boolean = true;     
 
     constructor(private todoService: TodoService) {
-         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
+        todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
     }
 
     ngOnInit() {
@@ -90,9 +90,11 @@ export class TodoListComponent implements OnInit {
         });
     }
     ///////////////////////////////////////////////
+    
     cancelEditing() {
         this.todoList.editable = false;
     }
+
 
     editLabel() {
         this.todoList.items.forEach(item => {

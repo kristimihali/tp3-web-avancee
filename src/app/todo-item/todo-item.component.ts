@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 export class TodoItemComponent implements OnInit {
 
   @Input() public data: TodoItemData;
-
   //check if there is a field that is already being edited
   private keepTrack:TodoItemData;
   location: any;
@@ -75,9 +74,8 @@ export class TodoItemComponent implements OnInit {
     item.editing = true;
     this.keepTrack = item;
   }
-  /////////////////////////////////////////////////////
 
-
+  ///////////////////////////////////////////////////// 
 }
 
 
