@@ -5,11 +5,13 @@ import { FormArray, FormControl } from '@angular/forms';
 import { TodoListData } from '../dataTypes/TodoListData';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
+
 export class TodoItemComponent implements OnInit {
 
   @Input() public data: TodoItemData;
@@ -62,7 +64,11 @@ export class TodoItemComponent implements OnInit {
 
   itemChange(item: TodoItemData, label:string){
     let editing = false;
-    this.todoService.setEditingDone(label, editing, item); 
+    if (label.length === 0) {
+    this.todoService.removeItems(item);
+		} else {
+      this.todoService.setEditingDone(label, editing, item); 
+		}
   }
 
   edit(item:TodoItemData) {
@@ -76,6 +82,8 @@ export class TodoItemComponent implements OnInit {
   }
 
   ///////////////////////////////////////////////////// 
+
+  
 }
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "PWA-TP3",
+  "name": "Todo",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,8 +8,7 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd .."
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
