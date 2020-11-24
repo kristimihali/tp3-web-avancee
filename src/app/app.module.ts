@@ -11,7 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { SigninComponent } from './authentication/signin/signin.component';
-// import { QRCodeModule } from 'angular2-qrcode';
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   declarations: [
@@ -20,13 +20,13 @@ import { SigninComponent } from './authentication/signin/signin.component';
     TodoItemComponent,
     SigninComponent
   ],
+
   imports: [
     AppRoutingModule,
     BrowserModule, 
     FormsModule, 
     StorageServiceModule,
-    // QRCodeModule
-
+    QRCodeModule
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

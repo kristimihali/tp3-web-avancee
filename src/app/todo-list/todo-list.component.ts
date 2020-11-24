@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Inject, Injectable } from '@angular/core';
 
+import { QRCodeModule } from 'angular2-qrcode';
 
 @Component({
     selector: 'app-todo-list',
