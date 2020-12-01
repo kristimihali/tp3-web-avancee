@@ -4,13 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "node server.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd ..",
-    "heroku-postbuild": "cd ANGULAR_APP_FOLDER && npm install"
+    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd .."
+  },
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
   },
   "private": true,
   "dependencies": {
@@ -31,9 +35,11 @@
     "angularx-qrcode": "^10.0.11",
     "bower": "^1.8.8",
     "core-js": "^2.4.1",
+    "express": "^4.17.1",
     "firebase": "8.1.1",
     "ng2-router-helper": "0.0.6",
     "ngx-webstorage-service": "^4.1.0",
+    "path": "^0.12.7",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.0.0-rc.0",
     "tslib": "^1.9.0",
@@ -48,6 +54,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^5.0.1",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
