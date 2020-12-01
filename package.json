@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd .."
+    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd ..",
+    "heroku-postbuild": "cd ANGULAR_APP_FOLDER && npm install"
   },
   "private": true,
   "dependencies": {
