@@ -6,11 +6,10 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --aot -prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pwa": "ng build --prod && cd dist && http-server -p 8080 && cd .."
+    "e2e": "ng e2e"
   },
   "engines": {
     "node": "14.15.1",
