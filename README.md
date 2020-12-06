@@ -4,8 +4,6 @@
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-=============
-
 ## Delete All 
 This functionality Deletes all the items of the list.
 
@@ -17,8 +15,13 @@ The list of the items that are uploaded to the Todo App, is updated to the QR on
 
 ## PWA Functionality
 The project is accessible at https://kristimihali.github.io/tp3-web-avancee/. 
-> "deploy": "npx gh-pages -d dist/tp3-web-avancee"
+<br>
+``` "deploy": "npx gh-pages -d dist/tp3-web-avancee" ```
+<br>
 The project was put online using 
-> npm run deploy
+<br>
+``` npm run deploy ```
+<br>
 after installing 
-> npm i -D gh-pages
+<br>
+``` npm i -D gh-pages ```
