@@ -14,7 +14,7 @@ This functionality allows the user to modify the label of the App when double-cl
 
 ## QR Functionality 
 The list of the items that are uploaded to the Todo App, is updated to the QR on a JSON Format. Whenever you modify the list of the items, for the QR Code to be updated, a Reload of the page needs to be done. If the code is scanned, a list of the items on a JSON format is generated. 
-
+<img src = "https://i.imgur.com/ooic2QY.png">
 ## PWA Functionality
 The project is accessible at https://kristimihali.github.io/tp3-web-avancee/. 
 <br>
