@@ -9,7 +9,7 @@ Access the project on https://kristimihali.github.io/tp3-web-avancee/ .
 ## Delete All 
 This functionality Deletes all the items of the list.
 
-## Modiy the ToDo Label
+## Modify the ToDo Label
 This functionality allows the user to modify the label of the App when double-clicking it. To save it, you need to press enter.
 <img src = "https://i.imgur.com/5FPTdJG.png">
 
