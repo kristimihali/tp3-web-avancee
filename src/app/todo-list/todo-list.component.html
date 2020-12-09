@@ -1,7 +1,4 @@
-
 <section class="todoapp">
-  <qrcode [qrdata]=myAngularxQrCode [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-
   <header class="header">
     <h1><label 	class="texte" (dblclick)="editLabel()" (click)="cancelEditing()">{{ label }} </label></h1>
     <input type="text" 
@@ -12,9 +9,16 @@
       (keyup.enter)="itemChangeLabel(newLabel.value)"
       [ngClass] = "{ 'hidden': !editable }"
     >
-
+    <!-- QR Code -->
+    <qrcode [qrdata]=myAngularxQrCode [width]="156" [errorCorrectionLevel]="'M'"></qrcode>
+    <!-- Voice Recognition -->
+    <h3 style="margin:10px;">Voice Recognition</h3>
+    <button style="margin:10px; background-color: #e7e7e7; color: black; padding: 15px 32px;" type="button" (click)="startService()">Start</button>
+    <button style="margin:10px; background-color: #555555; color: white; padding: 15px 32px;" (click)="stopService()">Stop</button>
+    <!-- End Voice Recognition -->
     <form (submit) = "appendItem(newTodoInput.value); newTodoInput.value=''" (click)="cancelEditing()">
       <input  #newTodoInput
+              value={{service.text}}  
               name        = "newTodoInput"
               class       = "new-todo"
               placeholder = "Que faire?"
@@ -53,19 +57,3 @@
     
   </footer>
 </section>
-
-<!-- Debug test 5: delete item -->
-<!-- <h3>5fth version</h3>
-<ul>
-  <li *ngFor="let item of items">
-    <input type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)">
-    <input type="button" (click)="deleteItem(item)" value="Delete"/>
-
-    <label for="">{{item.label}}</label>
-    <pre>{{item|json}}</pre>
-
-    <form (submit)="itemChange(item, newLab.value)">
-      <input type="text" [ngModel]="item.label" name="label" #newLab>
-    </form>
-  </li>
-</ul> -->

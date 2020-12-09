@@ -6,6 +6,7 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { Router, RouterModule } from '@angular/router';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Inject, Injectable } from '@angular/core';
+import { VoiceRecognitionService } from '../service/voice-recognition.service';
 
 // import { QRCodeModule } from 'angular2-qrcode';
 
@@ -13,7 +14,7 @@ import { Inject, Injectable } from '@angular/core';
     selector: 'app-todo-list',
     templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.css'],
-
+    providers: [VoiceRecognitionService]
 })
 
 export class TodoListComponent implements OnInit {
@@ -25,9 +26,10 @@ export class TodoListComponent implements OnInit {
     location: any;
     isSingleClick: Boolean = true;     
 
-    constructor(private todoService: TodoService) {
+    constructor(private todoService: TodoService, public service : VoiceRecognitionService) {
         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
         this.myAngularxQrCode = JSON.stringify(this.todoList);
+        this.service.init();
     }
 
     ngOnInit() {
@@ -117,5 +119,12 @@ export class TodoListComponent implements OnInit {
     }
     ///////////////////////////////////////
 
+    startService(){
+        this.service.start();
+      }
+    
+      stopService(){
+        this.service.stop();
+      }
 
 }

@@ -13,6 +13,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { environment } from '../environments/environment';
     TodoListComponent,
     TodoItemComponent,
     SigninComponent,
+    SpeechToTextComponent,
     
   ],
   schemas: [
