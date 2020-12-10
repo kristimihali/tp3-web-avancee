@@ -24,6 +24,14 @@ This functionality Deletes all the items of the list.
 ## QR Functionality 
 The list of the items that are uploaded to the Todo App, is updated to the QR on a JSON Format. Whenever you modify the list of the items, for the QR Code to be updated, a Reload of the page needs to be done. If the code is scanned, a list of the items on a JSON format is generated. 
 <img src = "https://i.imgur.com/S8qrHOJ.png">
+## Voice Recognition
+  Press start and allow the voice recognition on your browser. Whenever you are finished talking, press stop and the text will show in the "Que faire?" input.
+  It only works on some browsers, so use one of the following to test it.
+  1. Google chrome
+  2. Chrome for Android
+  3. Samsung Internet
+  4. QQ Browser
+  5.Baidu Browser
 ## PWA Functionality
 The project is accessible at https://kristimihali.github.io/tp3-web-avancee/. 
 <br>
