@@ -19,12 +19,15 @@ import { VoiceRecognitionService } from '../service/voice-recognition.service';
 
 export class TodoListComponent implements OnInit {
 
-    private todoList: TodoListData; 
+    private todoList: TodoListData;
     public myAngularxQrCode: any = null;
+    public selectAllItems = false;
+    public position = -1;
+    public history = [];
 
-    // private tempTotalItems: TodoItemData[];
+   // private tempTotalItems: TodoItemData[];
     location: any;
-    isSingleClick: Boolean = true;     
+    isSingleClick: Boolean = true;
 
     constructor(private todoService: TodoService, public service : VoiceRecognitionService) {
         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
@@ -33,12 +36,14 @@ export class TodoListComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.history = JSON.parse(localStorage.getItem("history")) || [];
+      this.position = this.history.length - 1;
     }
-    
+
     get label(): string {
         return this.todoList.label;
     }
-    
+
     get items(): TodoItemData[] {
         // return JSON.parse(localStorage.getItem('items'));
         return this.todoList.items;
@@ -51,18 +56,23 @@ export class TodoListComponent implements OnInit {
                 isDone:false,
                 editing:false
             });
+
+        this.saveHistory();
     }
 
     itemDone(item: TodoItemData, done:boolean){
         this.todoService.setItemsDone(done, item);
+        this.saveHistory();
     }
 
     itemChange(item: TodoItemData, label:string){
         this.todoService.setItemsLabel(label, item);
+        this.saveHistory();
     }
-    
+
     deleteItem(item: TodoItemData){
         this.todoService.removeItems(item);
+        this.saveHistory();
     }
 
     // cancelEditing(item: TodoItemData) {
@@ -72,18 +82,20 @@ export class TodoListComponent implements OnInit {
     deleteItems(){
         this.todoList.items.forEach(item => {
             if(item.isDone == true)
-                this.deleteItem(item); 
+                this.deleteItem(item);
         });
+
+      this.saveHistory();
     }
 
     get completed() {
-		return this.items.filter(t => t.isDone).length;
+        return this.items.filter(t => t.isDone).length;
     }
 
     get left() {
         return this.items.length - this.items.filter(t => t.isDone).length;
     }
-    
+
 
     get allItems(): TodoItemData[]{
         return this.todoList.items;
@@ -91,11 +103,19 @@ export class TodoListComponent implements OnInit {
 
     deleteAll(){
         this.todoList.items.forEach(item => {
-                this.deleteItem(item); 
+                this.deleteItem(item);
         });
     }
+
+    selectAll(){
+      this.selectAllItems = !this.selectAllItems;
+      this.todoList.items.forEach(item => {
+          this.todoService.setItemsDone(this.selectAllItems, item);
+      });
+      this.saveHistory();
+    }
     ///////////////////////////////////////////////
-    
+
     cancelEditing() {
         this.todoList.editable = false;
     }
@@ -121,10 +141,56 @@ export class TodoListComponent implements OnInit {
 
     startService(){
         this.service.start();
+    }
+
+    stopService(){
+      this.service.stop();
+    }
+
+    getHistory(){
+      return JSON.parse(localStorage.getItem("history")) || [];
+    }
+
+    saveHistory(){
+      this.history = this.getHistory();
+
+      if (!this.history) {
+        return;
       }
-    
-      stopService(){
-        this.service.stop();
+
+      if (this.todoList.items.length <=0) {
+        localStorage.setItem("history", '[]');
+      } else {
+        this.history.push(this.todoList);
+        localStorage.setItem("history",JSON.stringify(this.history));
+        this.position = this.history.length - 1;
+
+        console.log(this.history, this.position);
       }
+    }
+
+    undoOperator(){
+      this.history = this.getHistory();
+      this.position = this.position -1;
+      if(this.history && this.history[this.position]){
+        this.todoList.items =this.history[this.position].items;
+      }
+      console.log(this.history,this.position);
+    }
+
+    redoOperator(){
+      this.history = this.getHistory();
+      this.position = this.position + 1;
+
+      if(!this.history){
+        return;
+      }
+
+      if(this.position <= this.history.length -1 && this.history[this.position]){
+          this.todoList.items =this.history[this.position].items;
+      }
+      console.log(this.history,this.position);
+    }
+
 
 }

@@ -52,8 +52,8 @@
     </ul>
     <button *ngIf="completed > 0" class="clear-completed" (click)="deleteItems()">&times; Cochée{{completed !== 1 ? 's' : ''}} </button>
     <button *ngIf="items.length > 0" class="clear-completed" (click)="deleteAll()">&times; Tout</button>    
-    <button class="clear-completed" > &#8635; </button>
-    <button class="clear-completed" > &#8634;</button>    
+    <button class="clear-completed"  (click)="redoOperator()"> &#8635; </button>
+    <button class="clear-completed"  (click)="undoOperator()"> &#8634;</button>
     
   </footer>
 </section>
