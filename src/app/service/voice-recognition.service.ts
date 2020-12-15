@@ -7,16 +7,18 @@ declare var webkitSpeechRecognition: any;
 })
 export class VoiceRecognitionService {
 
-  recognition = new webkitSpeechRecognition();
+  recognition;
   isStoppedSpeechRecog = false;
   public text = '';
   tempWords;
-  
+
   constructor() { }
 
   init(){
+
+    this.recognition = new webkitSpeechRecognition();
     this.recognition.interimResults = true;
-    this.recognition.lang = 'en-US';
+    this.recognition.lang = 'fr-FR';
 
     this.recognition.addEventListener('result', (e) => {
       const transcript = Array.from(e.results)

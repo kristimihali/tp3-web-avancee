@@ -25,13 +25,18 @@ export class TodoListComponent implements OnInit {
     public position = -1;
     public history = [];
 
-   // private tempTotalItems: TodoItemData[];
+  // private tempTotalItems: TodoItemData[];
     location: any;
     isSingleClick: Boolean = true;
 
     constructor(private todoService: TodoService, public service : VoiceRecognitionService) {
         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
         this.myAngularxQrCode = JSON.stringify(this.todoList);
+
+        if (!('webkitSpeechRecognition' in window)) {
+          console.log('SpeechRecognition ne fonctionne pas sur ce navigateur');
+          return;
+        }
         this.service.init();
     }
 
@@ -62,12 +67,11 @@ export class TodoListComponent implements OnInit {
 
     itemDone(item: TodoItemData, done:boolean){
         this.todoService.setItemsDone(done, item);
-        this.saveHistory();
+      this.saveHistory();
     }
 
     itemChange(item: TodoItemData, label:string){
         this.todoService.setItemsLabel(label, item);
-        this.saveHistory();
     }
 
     deleteItem(item: TodoItemData){
@@ -89,7 +93,7 @@ export class TodoListComponent implements OnInit {
     }
 
     get completed() {
-        return this.items.filter(t => t.isDone).length;
+		return this.items.filter(t => t.isDone).length;
     }
 
     get left() {
@@ -105,6 +109,7 @@ export class TodoListComponent implements OnInit {
         this.todoList.items.forEach(item => {
                 this.deleteItem(item);
         });
+      this.saveHistory();
     }
 
     selectAll(){
@@ -141,7 +146,7 @@ export class TodoListComponent implements OnInit {
 
     startService(){
         this.service.start();
-    }
+      }
 
     stopService(){
       this.service.stop();
