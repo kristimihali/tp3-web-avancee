@@ -18,6 +18,12 @@ The list of objects is accessible on the local storage.
 
 <img src="https://i.imgur.com/VrJo42E.png">
 
+## Responsive version
+Accesssible on mobile phones.
+
+## Undo Redo
+Bugs.
+
 ## Delete All 
 This functionality Deletes all the items of the list.
 
