@@ -1,37 +1,44 @@
 <section class="todoapp">
   <header class="header">
     <h1><label 	class="texte" (dblclick)="editLabel()" (click)="cancelEditing()">{{ label }} </label></h1>
-    <input type="text" 
+    <input type="text"
       [ngModel]="label"
-      name="label" 
+      name="label"
       class='edit'
       #newLabel
       (keyup.enter)="itemChangeLabel(newLabel.value)"
       [ngClass] = "{ 'hidden': !editable }"
     >
     <!-- QR Code -->
+    <div class="qrcode">
+    <h3 style="margin:20px;">QR-Code</h3>
     <qrcode [qrdata]=myAngularxQrCode [width]="156" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+
     <!-- Voice Recognition -->
+    <div class="voice">
     <h3 style="margin:10px;">Voice Recognition</h3>
     <button style="margin:10px; background-color: #e7e7e7; color: black; padding: 15px 32px;" type="button" (click)="startService()">Start</button>
     <button style="margin:10px; background-color: #555555; color: white; padding: 15px 32px;" (click)="stopService()">Stop</button>
+    </div>
     <!-- End Voice Recognition -->
     <form (submit) = "appendItem(newTodoInput.value); newTodoInput.value=''" (click)="cancelEditing()">
       <input  #newTodoInput
-              value={{service.text}}  
+              value={{service.text}}
               name        = "newTodoInput"
               class       = "new-todo"
               placeholder = "Que faire?"
               autofocus />
     </form>
   </header>
-  <section class="main" *ngIf="items.length > 0" (click)="cancelEditing()">
+  <section class="main" (click)="cancelEditing()">
     <section class="main" >
     <input  class="toggle-all"
             type="checkbox"
             name="toggleAll"
+            (click)="selectAll()"
     />
-    <ul class="todo-list">
+    <ul class="todo-list" *ngIf="items.length > 0" >
       <app-todo-item [data]=items >
       </app-todo-item>
     </ul>
@@ -50,10 +57,9 @@
         <a class="filterCompleted" [routerLink]="['', 'completed']">Complétés</a>
       </li>
     </ul>
-    <button *ngIf="completed > 0" class="clear-completed" (click)="deleteItems()">&times; Cochée{{completed !== 1 ? 's' : ''}} </button>
-    <button *ngIf="items.length > 0" class="clear-completed" (click)="deleteAll()">&times; Tout</button>    
-    <button class="clear-completed"  (click)="redoOperator()"> &#8635; </button>
-    <button class="clear-completed"  (click)="undoOperator()"> &#8634;</button>
-    
+    <button *ngIf="completed > 0" class="clear-completed del-cochee" (click)="deleteItems()">&times; Cochée{{completed !== 1 ? 's' : ''}} </button>
+    <button *ngIf="items.length > 0" class="clear-completed del-all" (click)="deleteAll()">&times; Tout</button>
+    <button class="clear-completed redo-operator"  (click)="redoOperator()"> &#8635; </button>
+    <button class="clear-completed undo-operator"  (click)="undoOperator()"> &#8634;</button>
   </footer>
 </section>
