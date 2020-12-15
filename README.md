@@ -20,6 +20,7 @@ The list of objects is accessible on the local storage.
 
 ## Responsive version
 Accesssible on mobile phones.
+<img src="https://i.imgur.com/i83FR0f.png">
 
 ## Undo Redo
 Bugs.
