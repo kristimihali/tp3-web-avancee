@@ -23,8 +23,7 @@ Accesssible on mobile phones.
 
 <img src="https://i.imgur.com/i83FR0f.png" width ="450px" height = "650px">
 
-## Undo Redo
-Bugs.
+## Maps
 
 ## Delete All 
 This functionality Deletes all the items of the list.
