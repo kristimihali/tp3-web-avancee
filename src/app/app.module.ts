@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
-import { SigninComponent } from './authentication/signin/signin.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -19,7 +18,6 @@ import { environment } from '../environments/environment';
     AppComponent,
     TodoListComponent,
     TodoItemComponent,
-    SigninComponent,    
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

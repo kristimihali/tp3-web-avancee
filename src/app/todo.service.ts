@@ -6,13 +6,14 @@ import {TodoItemData} from './dataTypes/TodoItemData';
 @Injectable()
 export class TodoService {
 
-  private todoListSubject = new BehaviorSubject<TodoListData>( 
-    // {label: 'TodoList', items: [], editable:false} 
+
+  private todoListSubject = new BehaviorSubject<TodoListData>(
+    // {label: 'TodoList', items: [], editable:false}
     {
       label: localStorage.getItem('label') == null ? 'Todo' : localStorage.getItem('label'),
-      items: localStorage.getItem('items') == null ? [] : JSON.parse(localStorage.getItem('items')), 
+      items: localStorage.getItem('items') == null ? [] : JSON.parse(localStorage.getItem('items')),
       editable: false
-    } 
+    }
   );
 
   constructor() { }
@@ -26,7 +27,7 @@ export class TodoService {
     localStorage.setItem('label', label);
     this.todoListSubject.next( {
       label: label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label:I.label, isDone: I.isDone, editing:I.editing }) ),
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label:I.label, isDone: I.isDone, editing:I.editing, position: I.position }) ),
       editable:false
     });
   }
@@ -34,7 +35,7 @@ export class TodoService {
   setItemsLabel(label: string, ...items: TodoItemData[] ) {
     const tdl = this.todoListSubject.getValue();
 
-    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone: I.isDone, editing:I.editing }) );
+    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone: I.isDone, editing:I.editing, position: I.position }) );
     localStorage.setItem('items', JSON.stringify(newItems));
 
     this.todoListSubject.next( {
@@ -46,19 +47,19 @@ export class TodoService {
 
   setItemsDone(isDone: boolean, ...items: TodoItemData[]) {
     const tdl = this.todoListSubject.getValue();
-    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label: I.label, isDone, editing:I.editing }) );
+    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label: I.label, isDone, editing:I.editing, position: I.position }) );
     localStorage.setItem('items', JSON.stringify(newItems));
     this.todoListSubject.next( {
       label: tdl.label,
       items: newItems,
       editable:false
     });
-    
+
   }
 
   setEditingDone(label: string, editing: boolean, ...items: TodoItemData[]) {
     const tdl = this.todoListSubject.getValue();
-    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone:I.isDone, editing}) );
+    const newItems = tdl.items.map( I => items.indexOf(I) === -1 ? I : ({ label, isDone:I.isDone, position: I.position, editing}) );
     localStorage.setItem('items', JSON.stringify(newItems));
     this.todoListSubject.next( {
       label: tdl.label,
