@@ -13,17 +13,16 @@ This functionality allows the user to modify the label of the App when double-cl
 
 <img src = "https://i.imgur.com/cp4qBCR.png">
 
-## Local Storage
-The list of objects is accessible on the local storage.
+## Local Storage et Maps
+The list of objects is accessible on the local storage. Every object has the position (lat, long) of where the list item was added.
 
-<img src="https://i.imgur.com/VrJo42E.png">
+<img src="https://i.imgur.com/DWyvzwn.png">
 
 ## Responsive version
 Accesssible on mobile phones.
 
 <img src="https://i.imgur.com/i83FR0f.png" width ="450px" height = "650px">
 
-## Maps
 
 ## Delete All 
 This functionality Deletes all the items of the list.
